@@ -1,4 +1,4 @@
-package demowebshop.pages.homepageelements;
+package demowebshop.ui.pages.homepageelements;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -16,5 +16,8 @@ public class SideBarCommunityPoll {
     public SelenideElement rowWithRadioPoint(String label){
         return $x(MessageFormat.format("//ul[@class = \"poll-options\"]//label[contains(text(), \"{0}\")]", label))
                 .as("Вариант для выбора");
+    }
+    public SelenideElement beforeVoteTitle(){
+        return null;//$x().as("");
     }
 }

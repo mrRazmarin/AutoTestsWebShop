@@ -1,9 +1,11 @@
-package demowebshop.pages.homepageelements;
+package demowebshop.ui.pages.basepageelement;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import java.text.MessageFormat;
 
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class HeaderSection {
@@ -23,8 +25,16 @@ public class HeaderSection {
         return $x("//input[@class = \"button-1 search-box-button\"]")
                 .as("Кнопка поиска");
     }
-    public SelenideElement headerMenu(String headerName){
+    public SelenideElement headerMenuWithParam(String headerName){
         return $x(MessageFormat.format("//ul[@class = \"top-menu\"]/li/a[contains(text(), \"{0}\")]", headerName))
-                .as("Ссылка в меню шапки");
+                .as("Кнопка в шапке");
+    }
+    public ElementsCollection headerMenuList(){
+        return $$x("//ul[@class = \"top-menu\"]/li/a")
+                .as("Кнопки в шапке");
+    }
+    public SelenideElement headerMenuBlock(){
+        return $x("//div[@class = \"header-menu\"]")
+                .as("Блок шапки");
     }
 }

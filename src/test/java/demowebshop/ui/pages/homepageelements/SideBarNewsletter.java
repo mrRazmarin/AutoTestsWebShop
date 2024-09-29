@@ -1,4 +1,4 @@
-package demowebshop.pages.homepageelements;
+package demowebshop.ui.pages.homepageelements;
 
 import com.codeborne.selenide.SelenideElement;
 

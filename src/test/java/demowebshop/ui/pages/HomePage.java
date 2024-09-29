@@ -1,6 +1,12 @@
-package demowebshop.pages;
+package demowebshop.ui.pages;
 
-import demowebshop.pages.homepageelements.*;
+import demowebshop.ui.pages.basepageelement.HeaderSection;
+import demowebshop.ui.pages.basepageelement.SideBarCategories;
+import demowebshop.ui.pages.basepageelement.SideBarManufacturers;
+import demowebshop.ui.pages.basepageelement.SideBarPopularTags;
+import demowebshop.ui.pages.homepageelements.SideBarCommunityPoll;
+import demowebshop.ui.pages.homepageelements.SideBarNewsletter;
+import demowebshop.ui.pages.homepageelements.SliderSection;
 
 public class HomePage {
     public final HeaderSection headerSection = new HeaderSection();

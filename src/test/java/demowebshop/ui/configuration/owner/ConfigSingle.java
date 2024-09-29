@@ -1,4 +1,4 @@
-package demowebshop.configuration;
+package demowebshop.ui.configuration.owner;
 
 import org.aeonbits.owner.ConfigFactory;
 
