@@ -25,7 +25,7 @@ public class CommonSteps {
         basePageElements.headerSection.headerMenuBlock().should(appear, Duration.ofMillis(config.getTimeoutLong()));
     }
 
-    @Step
+    @Step("Переход на страницу")
     public void goToPage(String pageUrl) {
         Selenide.open(pageUrl);
         awaitPageLoad();
