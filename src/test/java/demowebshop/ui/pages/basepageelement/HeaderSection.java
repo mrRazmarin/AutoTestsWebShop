@@ -14,7 +14,7 @@ public class HeaderSection {
                 .as("Лого");
     }
     public SelenideElement linkHeader(String nameLink){
-        return $x(MessageFormat.format("//div[@class = \"headerSection-links\"]//li/a[contains(text(), \"{0}\")]", nameLink))
+        return $x(MessageFormat.format("//div[@class = \"header-links\"]//li/a[contains(text(), \"{0}\")]", nameLink))
                 .as("Ссылки в шапке");
     }
     public SelenideElement rowSearch(){
