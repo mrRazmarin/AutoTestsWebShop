@@ -3,6 +3,8 @@ package demowebshop.ui.steps;
 import demowebshop.ui.pages.LogInPage;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.appear;
+
 public class AuthSteps {
     private final LogInPage logInPage = new LogInPage();
 
@@ -19,5 +21,10 @@ public class AuthSteps {
     @Step("Клик по кнопке \"Log in\"")
     public void clickOnLogInButton(){
         logInPage.returningCustomerBlock.buttonLogIn().click();
+    }
+
+    @Step("Проверка ссылки на редирект")
+    public void checkLinkEmailAccount(String emailAddress){
+        logInPage.headerSection.linkHeader(emailAddress).should(appear);
     }
 }
