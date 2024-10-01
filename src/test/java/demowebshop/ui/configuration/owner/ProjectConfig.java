@@ -2,7 +2,8 @@ package demowebshop.ui.configuration.owner;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:ConfigOwner.properties")
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({"system:properties", "file:../ConfigOwner.properties"})
 public interface ProjectConfig extends Config {
     /**
      * Браузер
@@ -14,13 +15,9 @@ public interface ProjectConfig extends Config {
     /**
      * Ссылки на страницы
      */
-    @Key("homepage.url")
+    @Key("base.url")
     @DefaultValue("https://demowebshop.tricentis.com/")
-    String homePageUrl();
-
-    @Key("register.url")
-    @DefaultValue("https://demowebshop.tricentis.com/register")
-    String getUrlRegister();
+    String baseUrl();
 
     /**
      * Тайм-ауты (в миллисекундах)
@@ -45,6 +42,6 @@ public interface ProjectConfig extends Config {
     String getUserEmail();
 
     @Key("user.password")
-    @DefaultValue("")
+    @DefaultValue("demowebshop123")
     String getUserPassword();
 }
