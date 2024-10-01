@@ -24,7 +24,7 @@ public class Authorization {
                 .formParam("Email", config.getUserEmail())
                 .formParam("Password", config.getUserPassword())
                 .when()
-                .post(config.homePageUrl()+ LogInPost.LOG_IN_POST);
+                .post(config.baseUrl()+ LogInPost.LOG_IN_POST);
         Map<String, String> allCookies = response.getCookies();
         return new Cookie(
                 "NOPCOMMERCE.AUTH",
