@@ -5,7 +5,7 @@ package demowebshop.ui.configuration;
  */
 
 public class PagePath {
-    public static final String LOGIN = "/login";
-    public static final String REGISTER = "/register";
-    public static final String LOG_IN = "/login";
+    public static final String LOGIN = "login";
+    public static final String REGISTER = "register";
+    public static final String LOG_IN = "login";
 }
