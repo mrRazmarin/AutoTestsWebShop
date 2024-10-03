@@ -5,8 +5,7 @@ import demowebshop.ui.pages.LogInPage;
 
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static demowebshop.ui.pages.loginelements.TextErrorsMessages.*;
 
 public class AuthSteps {
@@ -55,6 +54,12 @@ public class AuthSteps {
                 .click();
     }
 
+    @Step("Клик по кнопке 'Log out'")
+    public void clickOnLogOutButton() {
+        logInPage.headerSection.linkHeader("Log out")
+                .click();
+    }
+
     @Step("Наличие ссылки редиректа в личный кабинет")
     public void checkLinkEmailAccount(String emailAddress){
         logInPage.headerSection.linkHeader(emailAddress)
@@ -69,5 +74,11 @@ public class AuthSteps {
         logInPage.returningCustomerBlock.credentialsErrorMessage()
                 .should(appear)
                 .shouldHave(text(getCredentialsErrorMessage()));
+    }
+
+    @Step("Проверка отсутствия ссылки на аккаунт")
+    public void checkNotHaveLinkOnAccountInHeader(String emailAddress){
+        logInPage.headerSection.linkHeader(emailAddress)
+                .should(disappear);
     }
 }
