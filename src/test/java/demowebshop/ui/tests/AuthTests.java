@@ -60,7 +60,7 @@ public class AuthTests extends BaseTest {
     }
 
     @Test
-    @JiraIssue("AUTH-03")
+    @JiraIssue("AUTH-04")
     @AllureId("4")
     @DisplayName("Сброс пароля и авторизация с новым паролем")
     @Disabled("Отключен, по причине невозможности извлечь пароль из письма отправленного на email-адрес")
@@ -73,5 +73,19 @@ public class AuthTests extends BaseTest {
         authSteps.inputEmail(config.getUserEmail());
         authSteps.inputPassword(config.getUserPasswordRecovery());
         authSteps.checkLinkEmailAccount(config.getUserEmail());
+    }
+
+    @Test
+    @JiraIssue("AUTH-05")
+    @AllureId("6")
+    @DisplayName("Проверка корректного выхода из аккаунта")
+    void reAuthorizedFromAccount(){
+        commonSteps.goToPage(config.baseUrl() + PagePath.LOG_IN);
+        authSteps.inputEmail(config.getUserEmail());
+        authSteps.inputPassword(config.getUserPassword());
+        authSteps.clickOnLogInButton();
+        authSteps.checkLinkEmailAccount(config.getUserEmail());
+        authSteps.clickOnLogOutButton();
+        authSteps.checkNotHaveLinkOnAccountInHeader(config.getUserEmail());
     }
 }
