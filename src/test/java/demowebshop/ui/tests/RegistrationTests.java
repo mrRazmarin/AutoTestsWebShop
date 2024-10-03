@@ -30,11 +30,37 @@ public class RegistrationTests extends BaseTest {
     @Disabled("Отключен, по причине отсутствия множества регистрационных данных, которые можно переиспользовать")
     void registrationNewUser(){
         commonSteps.goToPage(config.baseUrl() + PagePath.REGISTER);
+        registrationSteps.clickOnRadioButtonGenderMale();
         registrationSteps.setFirstName(config.getNewUserFirstName());
         registrationSteps.setLastName(config.getNewUserLastName());
         registrationSteps.setEmail(config.getNewUserEmail());
         registrationSteps.setPassword(config.getNewUserPassword());
         registrationSteps.setConfirmPassword(config.getNewUserPassword());
         registrationSteps.clickOnRegisterButton();
+    }
+
+    @Test
+    @JiraIssue("REG-02")
+    @AllureId("7")
+    @DisplayName("Попытка зарегистрироваться с пустой формой")
+    void registrationWithEmptyForm(){
+        commonSteps.goToPage(config.baseUrl() + PagePath.REGISTER);
+        registrationSteps.clickOnRegisterButton();
+        registrationSteps.checkHaveErrorsWithEmptyForm();
+    }
+
+    @Test
+    @JiraIssue("REG-03")
+    @AllureId("8")
+    @DisplayName("Проверка отображения валидационных ошибок, которые не связаны с пустой формой регистрации")
+    void validationErrorsTest(){
+        commonSteps.goToPage(config.baseUrl() + PagePath.REGISTER);
+        registrationSteps.setEmail("1");
+        registrationSteps.setPassword("1");
+        registrationSteps.setConfirmPassword("2");
+        registrationSteps.clickOnRadioButtonGenderMale();
+        registrationSteps.verifyTheEmailWrongError();
+        registrationSteps.verifyThePasswordDoNotMatchError();
+        registrationSteps.verifyTheSmallPasswordError();
     }
 }
