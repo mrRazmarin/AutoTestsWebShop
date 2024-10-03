@@ -2,6 +2,13 @@ package demowebshop.ui.steps;
 
 import demowebshop.ui.pages.RegisterPage;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
+
+import java.util.List;
+
+import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.Condition.text;
+import static demowebshop.ui.pages.registerelements.TextValidationErrorsMessages.*;
 
 public class RegistrationSteps {
     private final RegisterPage registerPage = new RegisterPage();
@@ -52,5 +59,45 @@ public class RegistrationSteps {
     public void clickOnRegisterButton() {
         registerPage.registerSections.buttonRegister()
                 .click();
+    }
+
+    @Step("Наличие ошибок при регистрации с пустой формой")
+    public void checkHaveErrorsWithEmptyForm(){
+        List<String> expectedList = List.of(getValidationErrorFirstNameText(),
+                getValidationErrorLastNameText(),
+                getValidationErrorRequiredEmailText(),
+                getValidationErrorPasswordText(),
+                getValidationErrorConfirmPasswordText());
+        registerPage.registerSections.validationErrorsList()
+                .shouldHave(texts(expectedList));
+        checkHaveTwoErrorsPasswordWithEmptyForm();
+    }
+
+    @Step("Проверка наличия 2-х ошибок пароля, при регистрации пустой формы")
+    private void checkHaveTwoErrorsPasswordWithEmptyForm(){
+        long countErrors = registerPage.registerSections.validationErrorsList()
+                .texts()
+                .stream()
+                .filter(str->str.equals(getValidationErrorPasswordText()))
+                .count();
+        Assertions.assertEquals(2, countErrors);
+    }
+
+    @Step("Проверка ошибки 'Wrong email'")
+    public void verifyTheEmailWrongError(){
+        registerPage.registerSections.validationErrorEmailField()
+                .shouldHave(text(getValidationErrorWrongEmailText()));
+    }
+
+    @Step("Проверка ошибки 'Password do not match'")
+    public void verifyThePasswordDoNotMatchError(){
+        registerPage.registerSections.validationErrorConfirmPasswordField()
+                .shouldHave(text(getValidationErrorDoNotMatchConfirmPasswordText()));
+    }
+
+    @Step("Проверка ошибки 'Small password'")
+    public void verifyTheSmallPasswordError(){
+        registerPage.registerSections.validationErrorPasswordField()
+                .shouldHave(text(getValidationErrorSmallPasswordText()));
     }
 }
