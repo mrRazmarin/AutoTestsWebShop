@@ -12,10 +12,12 @@ import java.util.Map;
 
 import static demowebshop.ui.configuration.owner.ConfigSingle.config;
 import static io.restassured.RestAssured.given;
+import static demowebshop.api.configuration.AllureFilterHttp.*;
 
 public class Authorization {
     private static Cookie getCommerceAuth() {
         Response response = given()
+                .filter(getAllureFilter())
                 .config(RestAssured.config()
                         .encoderConfig(EncoderConfig.encoderConfig()
                                 .encodeContentTypeAs("x-www-form-urlencoded", ContentType.URLENC)))
@@ -32,7 +34,7 @@ public class Authorization {
                 "/"
         );
     }
-    public static final Cookie getCookieAuth(){
+    public static Cookie getCookieAuth(){
         return getCommerceAuth();
     }
 }
