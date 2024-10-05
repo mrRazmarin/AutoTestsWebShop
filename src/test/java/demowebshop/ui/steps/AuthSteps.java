@@ -3,25 +3,28 @@ package demowebshop.ui.steps;
 import demowebshop.ui.pages.ForgotPasswordPage;
 import demowebshop.ui.pages.LogInPage;
 
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
+import io.qameta.allure.model.Parameter;
 
 import static com.codeborne.selenide.Condition.*;
 import static demowebshop.ui.pages.loginelements.TextErrorsMessages.*;
+import static com.codeborne.selenide.SetValueOptions.*;
 
 public class AuthSteps {
     private final LogInPage logInPage = new LogInPage();
     private final ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
 
     @Step("Ввод адреса электронной почты")
-    public void inputEmail(String email) {
+    public void inputEmail(@Param(mode = Parameter.Mode.MASKED) String email) {
         logInPage.returningCustomerBlock.emailInput()
-                .setValue(email);
+                .setValue(withText(email).sensitive());
     }
 
     @Step("Ввод пароля")
-    public void inputPassword(String password) {
+    public void inputPassword(@Param(mode = Parameter.Mode.MASKED) String password) {
         logInPage.returningCustomerBlock.passwordInput()
-                .setValue(password);
+                .setValue(withText(password).sensitive());
     }
 
     @Step("Клик по кнопке 'Log in'")
@@ -43,9 +46,9 @@ public class AuthSteps {
     }
 
     @Step("Ввод email-адреса")
-    public void inputEmailInRecoverField(String email) {
+    public void inputEmailInRecoverField(@Param(mode = Parameter.Mode.MASKED) String email) {
         forgotPasswordPage.forgotPasswordSection.emailInputField()
-                .setValue(email);
+                .setValue(withText(email).sensitive());
     }
 
     @Step("Клик по кнопке 'Recover'")
@@ -61,7 +64,7 @@ public class AuthSteps {
     }
 
     @Step("Наличие ссылки редиректа в личный кабинет")
-    public void checkLinkEmailAccount(String emailAddress){
+    public void checkLinkEmailAccount(@Param(mode = Parameter.Mode.MASKED) String emailAddress){
         logInPage.headerSection.linkHeader(emailAddress)
                 .should(appear);
     }
@@ -77,7 +80,7 @@ public class AuthSteps {
     }
 
     @Step("Проверка отсутствия ссылки на аккаунт")
-    public void checkNotHaveLinkOnAccountInHeader(String emailAddress){
+    public void checkNotHaveLinkOnAccountInHeader(@Param(mode = Parameter.Mode.MASKED) String emailAddress){
         logInPage.headerSection.linkHeader(emailAddress)
                 .should(disappear);
     }

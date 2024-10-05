@@ -1,13 +1,16 @@
 package demowebshop.ui.steps;
 
 import demowebshop.ui.pages.RegisterPage;
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
+import io.qameta.allure.model.Parameter;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.SetValueOptions.withText;
 import static demowebshop.ui.pages.registerelements.TextValidationErrorsMessages.*;
 
 public class RegistrationSteps {
@@ -38,21 +41,21 @@ public class RegistrationSteps {
     }
 
     @Step("Ввод email-адреса")
-    public void setEmail(String email) {
+    public void setEmail(@Param(mode = Parameter.Mode.MASKED) String email) {
         registerPage.registerSections.emailInputField()
-                .setValue(email);
+                .setValue(withText(email).sensitive());
     }
 
     @Step("Ввод пароля")
-    public void setPassword(String password) {
+    public void setPassword(@Param(mode = Parameter.Mode.MASKED) String password) {
         registerPage.registerSections.inputPassword()
-                .setValue(password);
+                .setValue(withText(password).sensitive());
     }
 
     @Step("Ввод подтверждения пароля")
-    public void setConfirmPassword(String confirmPassword) {
+    public void setConfirmPassword(@Param(mode = Parameter.Mode.MASKED) String confirmPassword) {
         registerPage.registerSections.inputConfirmPassword()
-                .setValue(confirmPassword);
+                .setValue(withText(confirmPassword).sensitive());
     }
 
     @Step("Клик на кнопку 'Register'")
