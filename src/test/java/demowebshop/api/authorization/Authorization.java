@@ -32,7 +32,7 @@ public class Authorization {
                 "/"
         );
     }
-    public static final Cookie getCookieAuth(){
+    public static Cookie getCookieAuth(){
         return getCommerceAuth();
     }
 }
