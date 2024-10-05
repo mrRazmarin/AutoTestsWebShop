@@ -1,13 +1,14 @@
 package demowebshop.ui.tests;
 
-import demowebshop.ui.allure.JiraIssue;
 import demowebshop.ui.allure.Layer;
 import demowebshop.ui.utils.BaseTest;
-import io.qameta.allure.*;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
 
 @Layer(value = "UI")
 @Epic("Домашняя страница")
@@ -17,12 +18,4 @@ import org.junit.jupiter.api.Test;
 @Owner("M.Salnikov")
 @DisplayName("Домашняя страница")
 public class HomePageTests extends BaseTest {
-
-    @Test
-    @JiraIssue("HOME-01")
-    @AllureId("9")
-    @DisplayName("")
-    void checkingRedirectToLinkCategories(){
-        
-    }
 }

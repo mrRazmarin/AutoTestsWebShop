@@ -108,11 +108,6 @@
             <version>${restassured.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 
