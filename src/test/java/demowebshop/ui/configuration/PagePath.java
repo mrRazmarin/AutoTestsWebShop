@@ -1,7 +1,7 @@
 package demowebshop.ui.configuration;
 
 /**
- * Пути к ресурсам URL страниц
+ * <h3>Пути к ресурсам URL страниц</h3>
  */
 
 public class PagePath {
